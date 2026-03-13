@@ -16,7 +16,7 @@ Automated [Trivy](https://github.com/aquasecurity/trivy) vulnerability scanner f
 ## Currently scanned
 
 <details>
-<summary>70 images (click to expand)</summary>
+<summary>69 images (click to expand)</summary>
 
 | Project | Image |
 |---------|-------|
@@ -48,7 +48,6 @@ Automated [Trivy](https://github.com/aquasecurity/trivy) vulnerability scanner f
 | Sonarr | `ghcr.io/hotio/sonarr:latest` |
 | Radarr | `ghcr.io/hotio/radarr:latest` |
 | Lidarr | `ghcr.io/hotio/lidarr:latest` |
-| Readarr | `ghcr.io/hotio/readarr:latest` |
 | Prowlarr | `ghcr.io/hotio/prowlarr:latest` |
 | Bazarr | `ghcr.io/hotio/bazarr:latest` |
 | Whisparr | `ghcr.io/hotio/whisparr:latest` |
@@ -58,7 +57,7 @@ Automated [Trivy](https://github.com/aquasecurity/trivy) vulnerability scanner f
 | qBittorrent | `ghcr.io/hotio/qbittorrent:latest` |
 | SABnzbd | `ghcr.io/hotio/sabnzbd:latest` |
 | NZBGet | `ghcr.io/nzbgetcom/nzbget:latest` |
-| Deluge | `ghcr.io/hotio/deluge:latest` |
+| Deluge | `lscr.io/linuxserver/deluge:latest` |
 | Transmission | `lscr.io/linuxserver/transmission:latest` |
 | Gluetun | `qmcgaw/gluetun:latest` |
 | WireGuard Easy | `ghcr.io/wg-easy/wg-easy:latest` |
@@ -85,7 +84,7 @@ Automated [Trivy](https://github.com/aquasecurity/trivy) vulnerability scanner f
 | Paperless-ngx | `ghcr.io/paperless-ngx/paperless-ngx:latest` |
 | Vaultwarden | `vaultwarden/server:latest` |
 | Mealie | `ghcr.io/mealie-recipes/mealie:latest` |
-| Home Assistant | `ghcr.io/home-assistant/home-assistant:latest` |
+| Home Assistant | `homeassistant/home-assistant:stable` |
 | Nextcloud | `nextcloud:latest` |
 | Gitea | `gitea/gitea:latest` |
 | Actual Budget | `actualbudget/actual-server:latest` |

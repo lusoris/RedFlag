@@ -89,9 +89,6 @@ images:
   - name: Lidarr
     image: ghcr.io/hotio/lidarr:latest
 
-  - name: Readarr
-    image: ghcr.io/hotio/readarr:latest
-
   - name: Prowlarr
     image: ghcr.io/hotio/prowlarr:latest
 
@@ -124,7 +121,7 @@ images:
     image: ghcr.io/nzbgetcom/nzbget:latest
 
   - name: Deluge
-    image: ghcr.io/hotio/deluge:latest
+    image: lscr.io/linuxserver/deluge:latest
 
   - name: Transmission
     image: lscr.io/linuxserver/transmission:latest
@@ -223,7 +220,7 @@ images:
     image: ghcr.io/mealie-recipes/mealie:latest
 
   - name: Home Assistant
-    image: ghcr.io/home-assistant/home-assistant:latest
+    image: homeassistant/home-assistant:stable
 
   - name: Nextcloud
     image: nextcloud:latest
