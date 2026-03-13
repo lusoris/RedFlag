@@ -1,1 +1,187 @@
-{}
+{
+  "ghcr.io/cleanuparr/cleanuparr:latest": {
+    "last_scan": "2026-03-13T14:24:34.684579224Z",
+    "image_digest": "ghcr.io/cleanuparr/cleanuparr@sha256:086470c766e2e2f6f010fc192ba728daa0a1ba77a7b17ff5e451f7c98c379a16",
+    "posted_cves": {}
+  },
+  "haveagitgat/tdarr:latest": {
+    "last_scan": "2026-03-13T14:24:29.789389213Z",
+    "image_digest": "haveagitgat/tdarr@sha256:d5efda35bc62a5af68faf4beaee5ad3bfcbc3e7f4ce51b33c9d5bab365039610",
+    "posted_cves": {
+      "CVE-2022-25883": {
+        "posted_at": "2026-03-13T14:24:29.789383661Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2024-12905": {
+        "posted_at": "2026-03-13T14:24:29.789385104Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2024-21538": {
+        "posted_at": "2026-03-13T14:24:29.789380741Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2024-37890": {
+        "posted_at": "2026-03-13T14:24:29.789388664Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2024-4068": {
+        "posted_at": "2026-03-13T14:24:29.789380674Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2024-45813": {
+        "posted_at": "2026-03-13T14:24:29.789380919Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-24033": {
+        "posted_at": "2026-03-13T14:24:29.78938055Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-37849": {
+        "posted_at": "2026-03-13T14:24:29.789377343Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-37899": {
+        "posted_at": "2026-03-13T14:24:29.789377612Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-38118": {
+        "posted_at": "2026-03-13T14:24:29.789377773Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-38352": {
+        "posted_at": "2026-03-13T14:24:29.789377924Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-38561": {
+        "posted_at": "2026-03-13T14:24:29.789378088Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-38666": {
+        "posted_at": "2026-03-13T14:24:29.789378264Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-39698": {
+        "posted_at": "2026-03-13T14:24:29.789378374Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-40300": {
+        "posted_at": "2026-03-13T14:24:29.789378531Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-48387": {
+        "posted_at": "2026-03-13T14:24:29.789385281Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-59343": {
+        "posted_at": "2026-03-13T14:24:29.789385622Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-64756": {
+        "posted_at": "2026-03-13T14:24:29.789381002Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-65945": {
+        "posted_at": "2026-03-13T14:24:29.789383304Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-66418": {
+        "posted_at": "2026-03-13T14:24:29.789388744Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-66471": {
+        "posted_at": "2026-03-13T14:24:29.789388903Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2025-68973": {
+        "posted_at": "2026-03-13T14:24:29.789375696Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-21441": {
+        "posted_at": "2026-03-13T14:24:29.789389128Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-23745": {
+        "posted_at": "2026-03-13T14:24:29.789383835Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-23950": {
+        "posted_at": "2026-03-13T14:24:29.789383986Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-24842": {
+        "posted_at": "2026-03-13T14:24:29.789384142Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-25223": {
+        "posted_at": "2026-03-13T14:24:29.789380828Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-26960": {
+        "posted_at": "2026-03-13T14:24:29.789384213Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-26996": {
+        "posted_at": "2026-03-13T14:24:29.789383378Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-27903": {
+        "posted_at": "2026-03-13T14:24:29.789383463Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-27904": {
+        "posted_at": "2026-03-13T14:24:29.789383551Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-29786": {
+        "posted_at": "2026-03-13T14:24:29.789384821Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      },
+      "CVE-2026-31802": {
+        "posted_at": "2026-03-13T14:24:29.789385016Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/2"
+      }
+    }
+  },
+  "revenz/fileflows:latest": {
+    "last_scan": "2026-03-13T14:24:00.801272163Z",
+    "image_digest": "revenz/fileflows@sha256:9c74a8ecca60011222ece986efb27a428e55c4d0929ce9346f144b7daefb64b6",
+    "posted_cves": {
+      "CVE-2021-24112": {
+        "posted_at": "2026-03-13T14:24:00.801268981Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2023-36414": {
+        "posted_at": "2026-03-13T14:24:00.801267164Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2024-0056": {
+        "posted_at": "2026-03-13T14:24:00.801268827Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2025-15558": {
+        "posted_at": "2026-03-13T14:24:00.801269828Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2025-26646": {
+        "posted_at": "2026-03-13T14:24:00.801269112Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2025-55247": {
+        "posted_at": "2026-03-13T14:24:00.801269253Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2025-68121": {
+        "posted_at": "2026-03-13T14:24:00.801269517Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2026-24051": {
+        "posted_at": "2026-03-13T14:24:00.801269678Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      },
+      "CVE-2026-26130": {
+        "posted_at": "2026-03-13T14:24:00.801269381Z",
+        "post_url": "https://github.com/lusoris/RedFlag/issues/1"
+      }
+    }
+  }
+}
