@@ -1,7 +1,6 @@
-# Binaries
-redflag
-redflag.exe
-*.exe
+# Binaries (root only)
+/redflag
+/redflag.exe
 
 # Go
 vendor/
