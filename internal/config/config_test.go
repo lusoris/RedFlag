@@ -13,10 +13,8 @@ func TestLoad(t *testing.T) {
 	content := `images:
   - name: testapp
     image: testorg/testapp:latest
-    subreddits: [homelab, testapp]
   - name: otherapp
     image: ghcr.io/org/otherapp:latest
-    subreddits: [homelab]
 `
 	if err := os.WriteFile(path, []byte(content), 0o644); err != nil {
 		t.Fatal(err)
@@ -36,9 +34,6 @@ func TestLoad(t *testing.T) {
 	}
 	if cfg.Images[0].Image != "testorg/testapp:latest" {
 		t.Errorf("expected image 'testorg/testapp:latest', got %q", cfg.Images[0].Image)
-	}
-	if len(cfg.Images[0].Subreddits) != 2 {
-		t.Errorf("expected 2 subreddits, got %d", len(cfg.Images[0].Subreddits))
 	}
 }
 
@@ -69,9 +64,8 @@ func TestLoadMissingFields(t *testing.T) {
 		name    string
 		content string
 	}{
-		{"no image", "images:\n  - name: foo\n    subreddits: [bar]\n"},
-		{"no name", "images:\n  - image: foo/bar:latest\n    subreddits: [bar]\n"},
-		{"no subreddits", "images:\n  - name: foo\n    image: foo/bar:latest\n"},
+		{"no image", "images:\n  - name: foo\n"},
+		{"no name", "images:\n  - image: foo/bar:latest\n"},
 	}
 
 	for _, tc := range tests {

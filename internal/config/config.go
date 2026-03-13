@@ -8,9 +8,8 @@ import (
 )
 
 type ImageEntry struct {
-	Name       string   `yaml:"name"`
-	Image      string   `yaml:"image"`
-	Subreddits []string `yaml:"subreddits"`
+	Name  string `yaml:"name"`
+	Image string `yaml:"image"`
 }
 
 type Config struct {
@@ -38,9 +37,6 @@ func Load(path string) (*Config, error) {
 		}
 		if img.Name == "" {
 			return nil, fmt.Errorf("image at index %d has no name field", i)
-		}
-		if len(img.Subreddits) == 0 {
-			return nil, fmt.Errorf("image %q has no subreddits", img.Name)
 		}
 	}
 

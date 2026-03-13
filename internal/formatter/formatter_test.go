@@ -53,6 +53,9 @@ func TestFormatPostBodyContainsCVE(t *testing.T) {
 	if !strings.Contains(post.Body, "RedFlag") {
 		t.Error("body should contain RedFlag attribution")
 	}
+	if len(post.Labels) < 2 {
+		t.Error("expected at least 2 labels (security + app name)")
+	}
 }
 
 func TestFormatPostNoFixVersion(t *testing.T) {

@@ -1,12 +1,9 @@
 images:
   - name: FileFlows
     image: revenz/fileflows:latest
-    subreddits: [homelab, FileFlows]
 
   - name: Tdarr
     image: haveagitgat/tdarr:latest
-    subreddits: [homelab, Tdarr]
 
   - name: Cleanuparr
     image: ghcr.io/cleanuparr/cleanuparr:latest
-    subreddits: [homelab, sonarr, radarr]
