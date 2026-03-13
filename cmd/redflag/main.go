@@ -91,42 +91,26 @@ func processImage(img config.ImageEntry, store state.Store, ghClient *notifier.G
 	}
 
 	imageState := store.GetOrCreate(img.Image)
-
 	diffResult := diff.New(scanResult, imageState)
-	if !diffResult.HasNew() {
-		slog.Info("no new vulnerabilities", "image", img.Image)
-		imageState.LastScan = time.Now().UTC()
-		if scanResult.Digest != "" {
-			imageState.ImageDigest = scanResult.Digest
-		}
-		return nil
-	}
 
-	slog.Info("new vulnerabilities found", "image", img.Image, "count", len(diffResult.NewVulns))
-
-	post := formatter.FormatPost(img.Name, img.Image, diffResult.NewVulns)
-
-	if dryRun {
-		fmt.Printf("\n=== DRY RUN: %s ===\n", img.Name)
-		fmt.Printf("Title: %s\n", post.Title)
-		fmt.Printf("Labels: %v\n", post.Labels)
-		fmt.Printf("Body:\n%s\n", post.Body)
-	} else {
-		result, err := ghClient.CreateIssue(post.Title, post.Body, post.Labels)
-		if err != nil {
-			return fmt.Errorf("creating GitHub issue: %w", err)
-		}
-		slog.Info("created issue", "url", result.URL)
-
-		for _, v := range diffResult.NewVulns {
-			imageState.MarkPosted(v.VulnerabilityID, "github", result.URL)
+	// Handle resolved CVEs
+	if diffResult.HasResolved() {
+		slog.Info("resolved vulnerabilities", "image", img.Image, "count", len(diffResult.ResolvedCVEs))
+		if err := handleResolved(img, imageState, diffResult, ghClient, dryRun, scanResult); err != nil {
+			slog.Error("failed to handle resolved CVEs", "image", img.Image, "error", err)
 		}
 	}
 
-	if dryRun {
-		for _, v := range diffResult.NewVulns {
-			imageState.MarkPosted(v.VulnerabilityID, "dry-run", "")
+	// Handle new CVEs
+	if diffResult.HasNew() {
+		slog.Info("new vulnerabilities found", "image", img.Image, "count", len(diffResult.NewVulns))
+		if err := handleNew(img, imageState, diffResult, ghClient, dryRun); err != nil {
+			return err
 		}
+	}
+
+	if !diffResult.HasNew() && !diffResult.HasResolved() {
+		slog.Info("no changes", "image", img.Image)
 	}
 
 	imageState.LastScan = time.Now().UTC()
@@ -135,6 +119,109 @@ func processImage(img config.ImageEntry, store state.Store, ghClient *notifier.G
 	}
 
 	return nil
+}
+
+func handleNew(img config.ImageEntry, imageState *state.ImageState, diffResult *diff.Result, ghClient *notifier.GitHubClient, dryRun bool) error {
+	post := formatter.FormatPost(img.Name, img.Image, diffResult.NewVulns)
+
+	if dryRun {
+		fmt.Printf("\n=== DRY RUN: %s ===\n", img.Name)
+		fmt.Printf("Title: %s\n", post.Title)
+		fmt.Printf("Labels: %v\n", post.Labels)
+		fmt.Printf("Body:\n%s\n", post.Body)
+		for _, v := range diffResult.NewVulns {
+			imageState.MarkPosted(v.VulnerabilityID, "dry-run", "", 0)
+		}
+		return nil
+	}
+
+	result, err := ghClient.CreateIssue(post.Title, post.Body, post.Labels)
+	if err != nil {
+		return fmt.Errorf("creating GitHub issue: %w", err)
+	}
+	slog.Info("created issue", "url", result.URL)
+
+	for _, v := range diffResult.NewVulns {
+		imageState.MarkPosted(v.VulnerabilityID, "github", result.URL, result.Number)
+	}
+	return nil
+}
+
+func handleResolved(img config.ImageEntry, imageState *state.ImageState, diffResult *diff.Result, ghClient *notifier.GitHubClient, dryRun bool, scanResult *scanner.ScanResult) error {
+	// Group resolved CVEs by the issue they were reported in
+	issueResolved := make(map[int][]string) // issue number → resolved CVE IDs
+	for _, cveID := range diffResult.ResolvedCVEs {
+		issueNum := imageState.IssueNumber(cveID)
+		if issueNum > 0 {
+			issueResolved[issueNum] = append(issueResolved[issueNum], cveID)
+		}
+		imageState.MarkResolved(cveID)
+	}
+
+	if dryRun {
+		for issueNum, cves := range issueResolved {
+			fmt.Printf("\n=== DRY RUN RESOLVED: %s (issue #%d) ===\n", img.Name, issueNum)
+			fmt.Printf("Resolved CVEs: %v\n", cves)
+			allResolved := issueFullyResolved(imageState, issueNum)
+			fmt.Printf("All CVEs resolved (close issue): %v\n", allResolved)
+		}
+		return nil
+	}
+
+	for issueNum, cves := range issueResolved {
+		comment := formatter.FormatResolutionComment(img.Name, cves)
+		if err := ghClient.CommentOnIssue(issueNum, comment); err != nil {
+			slog.Error("failed to comment on issue", "number", issueNum, "error", err)
+			continue
+		}
+
+		if issueFullyResolved(imageState, issueNum) {
+			// All CVEs on this issue are resolved — close it
+			if err := ghClient.CloseIssue(issueNum); err != nil {
+				slog.Error("failed to close issue", "number", issueNum, "error", err)
+			}
+		} else {
+			// Some CVEs remain — update the title with current counts
+			critCount, highCount := remainingCounts(imageState, issueNum, scanResult)
+			newTitle := formatter.FormatTitle(img.Name, critCount, highCount)
+			if err := ghClient.UpdateIssueTitle(issueNum, newTitle); err != nil {
+				slog.Error("failed to update issue title", "number", issueNum, "error", err)
+			}
+		}
+	}
+	return nil
+}
+
+// issueFullyResolved checks if all CVEs associated with an issue are resolved.
+func issueFullyResolved(imageState *state.ImageState, issueNum int) bool {
+	for _, s := range imageState.PostedCVEs {
+		if s.IssueNumber == issueNum && !s.Resolved {
+			return false
+		}
+	}
+	return true
+}
+
+// remainingCounts computes the critical/high counts for unresolved CVEs on an issue,
+// using the current scan results for severity info.
+func remainingCounts(imageState *state.ImageState, issueNum int, scanResult *scanner.ScanResult) (critical, high int) {
+	// Build a lookup from CVE ID → severity from current scan
+	sevMap := make(map[string]string)
+	for _, v := range scanResult.Vulnerabilities {
+		sevMap[v.VulnerabilityID] = v.Severity
+	}
+
+	for cveID, s := range imageState.PostedCVEs {
+		if s.IssueNumber == issueNum && !s.Resolved {
+			switch sevMap[cveID] {
+			case "CRITICAL":
+				critical++
+			case "HIGH":
+				high++
+			}
+		}
+	}
+	return
 }
 
 func resolveRepo(owner, repo string) (string, string, error) {

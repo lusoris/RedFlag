@@ -9,8 +9,11 @@ import (
 
 // SubredditStatus tracks whether a CVE set was posted to a specific subreddit.
 type SubredditStatus struct {
-	PostedAt time.Time `json:"posted_at"`
-	PostURL  string    `json:"post_url,omitempty"`
+	PostedAt    time.Time `json:"posted_at"`
+	PostURL     string    `json:"post_url,omitempty"`
+	IssueNumber int       `json:"issue_number,omitempty"`
+	Resolved    bool      `json:"resolved,omitempty"`
+	ResolvedAt  time.Time `json:"resolved_at,omitempty"`
 }
 
 // ImageState holds the scan state for a single container image.
@@ -80,9 +83,38 @@ func (is *ImageState) IsPosted(cveID string) bool {
 }
 
 // MarkPosted records that a CVE was posted to a subreddit.
-func (is *ImageState) MarkPosted(cveID, subreddit, postURL string) {
+func (is *ImageState) MarkPosted(cveID, subreddit, postURL string, issueNumber int) {
 	is.PostedCVEs[cveID] = SubredditStatus{
-		PostedAt: time.Now().UTC(),
-		PostURL:  postURL,
+		PostedAt:    time.Now().UTC(),
+		PostURL:     postURL,
+		IssueNumber: issueNumber,
 	}
+}
+
+// MarkResolved records that a CVE is no longer present in scan results.
+func (is *ImageState) MarkResolved(cveID string) {
+	if s, ok := is.PostedCVEs[cveID]; ok {
+		s.Resolved = true
+		s.ResolvedAt = time.Now().UTC()
+		is.PostedCVEs[cveID] = s
+	}
+}
+
+// IssueNumber returns the GitHub issue number for a given CVE, or 0 if not tracked.
+func (is *ImageState) IssueNumber(cveID string) int {
+	if s, ok := is.PostedCVEs[cveID]; ok {
+		return s.IssueNumber
+	}
+	return 0
+}
+
+// ActiveCVECount returns the number of CVEs that are posted but not yet resolved.
+func (is *ImageState) ActiveCVECount() int {
+	count := 0
+	for _, s := range is.PostedCVEs {
+		if !s.Resolved {
+			count++
+		}
+	}
+	return count
 }

@@ -37,7 +37,7 @@ func TestSaveAndLoad(t *testing.T) {
 
 	s := make(Store)
 	is := s.GetOrCreate("testorg/testapp:latest")
-	is.MarkPosted("CVE-2024-1234", "homelab", "https://reddit.com/r/homelab/abc")
+	is.MarkPosted("CVE-2024-1234", "homelab", "https://reddit.com/r/homelab/abc", 0)
 
 	if err := s.Save(path); err != nil {
 		t.Fatalf("save error: %v", err)
@@ -64,10 +64,54 @@ func TestGetOrCreate(t *testing.T) {
 	s := make(Store)
 
 	is1 := s.GetOrCreate("img:latest")
-	is1.MarkPosted("CVE-1", "test", "")
+	is1.MarkPosted("CVE-1", "test", "", 0)
 
 	is2 := s.GetOrCreate("img:latest")
 	if !is2.IsPosted("CVE-1") {
 		t.Error("expected same ImageState to be returned for same key")
+	}
+}
+
+func TestMarkResolved(t *testing.T) {
+	is := &ImageState{
+		PostedCVEs: make(map[string]SubredditStatus),
+	}
+	is.MarkPosted("CVE-1", "github", "https://example.com", 42)
+	is.MarkResolved("CVE-1")
+
+	s := is.PostedCVEs["CVE-1"]
+	if !s.Resolved {
+		t.Error("expected CVE to be marked as resolved")
+	}
+	if s.ResolvedAt.IsZero() {
+		t.Error("expected ResolvedAt to be set")
+	}
+}
+
+func TestIssueNumber(t *testing.T) {
+	is := &ImageState{
+		PostedCVEs: make(map[string]SubredditStatus),
+	}
+	is.MarkPosted("CVE-1", "github", "", 42)
+
+	if n := is.IssueNumber("CVE-1"); n != 42 {
+		t.Errorf("expected issue number 42, got %d", n)
+	}
+	if n := is.IssueNumber("CVE-NONE"); n != 0 {
+		t.Errorf("expected issue number 0 for unknown CVE, got %d", n)
+	}
+}
+
+func TestActiveCVECount(t *testing.T) {
+	is := &ImageState{
+		PostedCVEs: make(map[string]SubredditStatus),
+	}
+	is.MarkPosted("CVE-1", "github", "", 1)
+	is.MarkPosted("CVE-2", "github", "", 1)
+	is.MarkPosted("CVE-3", "github", "", 1)
+	is.MarkResolved("CVE-2")
+
+	if c := is.ActiveCVECount(); c != 2 {
+		t.Errorf("expected 2 active CVEs, got %d", c)
 	}
 }

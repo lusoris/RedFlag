@@ -83,6 +83,26 @@ func FormatPost(appName, image string, vulns []scanner.Vulnerability) *Post {
 	}
 }
 
+// FormatResolutionComment creates a comment body for resolved CVEs.
+func FormatResolutionComment(appName string, resolvedCVEs []string) string {
+	var b strings.Builder
+	b.WriteString(fmt.Sprintf("## ✅ Resolved in %s\n\n", appName))
+	b.WriteString(fmt.Sprintf("The following %d vulnerabilit%s no longer detected as of %s:\n\n",
+		len(resolvedCVEs), pluralSuffix(len(resolvedCVEs)),
+		time.Now().UTC().Format("2006-01-02")))
+	for _, cve := range resolvedCVEs {
+		b.WriteString(fmt.Sprintf("- ~%s~\n", cve))
+	}
+	b.WriteString("\n> Automatically verified by [RedFlag](https://github.com/lusoris/RedFlag)\n")
+	return b.String()
+}
+
+// FormatTitle generates an issue title from app name and severity counts.
+// Exported so main can recompute titles when counts change.
+func FormatTitle(appName string, critical, high int) string {
+	return formatTitle(appName, critical, high)
+}
+
 func formatTitle(appName string, critical, high int) string {
 	parts := []string{}
 	if critical > 0 {

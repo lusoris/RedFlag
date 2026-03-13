@@ -69,3 +69,35 @@ func TestFormatPostNoFixVersion(t *testing.T) {
 		t.Error("body should show 'No fix' when FixedVersion is empty")
 	}
 }
+
+func TestFormatResolutionComment(t *testing.T) {
+	cves := []string{"CVE-2024-0001", "CVE-2024-0002"}
+	comment := FormatResolutionComment("Tdarr", cves)
+
+	if !strings.Contains(comment, "Resolved in Tdarr") {
+		t.Error("comment should mention app name")
+	}
+	if !strings.Contains(comment, "~CVE-2024-0001~") {
+		t.Error("comment should contain strikethrough CVE")
+	}
+	if !strings.Contains(comment, "2 vulnerabilities") {
+		t.Error("comment should mention count")
+	}
+}
+
+func TestFormatResolutionCommentSingular(t *testing.T) {
+	cves := []string{"CVE-2024-0001"}
+	comment := FormatResolutionComment("App", cves)
+
+	if !strings.Contains(comment, "1 vulnerability") {
+		t.Error("comment should use singular form for 1 CVE")
+	}
+}
+
+func TestFormatTitleExported(t *testing.T) {
+	title := FormatTitle("Sonarr", 2, 3)
+	expected := "[Security] Sonarr — 2 Critical, 3 High vulnerabilities found"
+	if title != expected {
+		t.Errorf("expected %q, got %q", expected, title)
+	}
+}
