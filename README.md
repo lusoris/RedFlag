@@ -16,7 +16,7 @@ Automated [Trivy](https://github.com/aquasecurity/trivy) vulnerability scanner f
 ## Currently scanned
 
 <details>
-<summary>25 images (click to expand)</summary>
+<summary>70 images (click to expand)</summary>
 
 | Project | Image |
 |---------|-------|
@@ -45,6 +45,52 @@ Automated [Trivy](https://github.com/aquasecurity/trivy) vulnerability scanner f
 | Autopulse | `ghcr.io/dan-online/autopulse:latest` |
 | Unpackerr | `ghcr.io/unpackerr/unpackerr:latest` |
 | StashApp | `stashapp/stash:latest` |
+| Sonarr | `ghcr.io/hotio/sonarr:latest` |
+| Radarr | `ghcr.io/hotio/radarr:latest` |
+| Lidarr | `ghcr.io/hotio/lidarr:latest` |
+| Readarr | `ghcr.io/hotio/readarr:latest` |
+| Prowlarr | `ghcr.io/hotio/prowlarr:latest` |
+| Bazarr | `ghcr.io/hotio/bazarr:latest` |
+| Whisparr | `ghcr.io/hotio/whisparr:latest` |
+| Plex | `ghcr.io/hotio/plex:latest` |
+| Jellyfin | `jellyfin/jellyfin:latest` |
+| Emby | `emby/embyserver:latest` |
+| qBittorrent | `ghcr.io/hotio/qbittorrent:latest` |
+| SABnzbd | `ghcr.io/hotio/sabnzbd:latest` |
+| NZBGet | `ghcr.io/nzbgetcom/nzbget:latest` |
+| Deluge | `ghcr.io/hotio/deluge:latest` |
+| Transmission | `lscr.io/linuxserver/transmission:latest` |
+| Gluetun | `qmcgaw/gluetun:latest` |
+| WireGuard Easy | `ghcr.io/wg-easy/wg-easy:latest` |
+| Tailscale | `tailscale/tailscale:latest` |
+| Traefik | `traefik:latest` |
+| Nginx Proxy Manager | `jc21/nginx-proxy-manager:latest` |
+| Caddy | `caddy:latest` |
+| Portainer | `portainer/portainer-ce:latest` |
+| Homepage | `ghcr.io/gethomepage/homepage:latest` |
+| Dashy | `lissy93/dashy:latest` |
+| Organizr | `organizr/organizr:latest` |
+| Uptime Kuma | `louislam/uptime-kuma:latest` |
+| Grafana | `grafana/grafana:latest` |
+| Prometheus | `prom/prometheus:latest` |
+| Pi-hole | `pihole/pihole:latest` |
+| AdGuard Home | `adguard/adguardhome:latest` |
+| Authelia | `authelia/authelia:latest` |
+| Authentik | `ghcr.io/goauthentik/server:latest` |
+| Tautulli | `ghcr.io/tautulli/tautulli:latest` |
+| Audiobookshelf | `ghcr.io/advplyr/audiobookshelf:latest` |
+| Kavita | `jvmilazz0/kavita:latest` |
+| Komga | `gotson/komga:latest` |
+| Immich | `ghcr.io/immich-app/immich-server:latest` |
+| Paperless-ngx | `ghcr.io/paperless-ngx/paperless-ngx:latest` |
+| Vaultwarden | `vaultwarden/server:latest` |
+| Mealie | `ghcr.io/mealie-recipes/mealie:latest` |
+| Home Assistant | `ghcr.io/home-assistant/home-assistant:latest` |
+| Nextcloud | `nextcloud:latest` |
+| Gitea | `gitea/gitea:latest` |
+| Actual Budget | `actualbudget/actual-server:latest` |
+| Syncthing | `syncthing/syncthing:latest` |
+| Watchtower | `containrrr/watchtower:latest` |
 
 </details>
 

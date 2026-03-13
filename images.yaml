@@ -77,3 +77,165 @@ images:
 
   - name: StashApp
     image: stashapp/stash:latest
+
+  # --- Core *arr stack ---
+
+  - name: Sonarr
+    image: ghcr.io/hotio/sonarr:latest
+
+  - name: Radarr
+    image: ghcr.io/hotio/radarr:latest
+
+  - name: Lidarr
+    image: ghcr.io/hotio/lidarr:latest
+
+  - name: Readarr
+    image: ghcr.io/hotio/readarr:latest
+
+  - name: Prowlarr
+    image: ghcr.io/hotio/prowlarr:latest
+
+  - name: Bazarr
+    image: ghcr.io/hotio/bazarr:latest
+
+  - name: Whisparr
+    image: ghcr.io/hotio/whisparr:latest
+
+  # --- Media servers ---
+
+  - name: Plex
+    image: ghcr.io/hotio/plex:latest
+
+  - name: Jellyfin
+    image: jellyfin/jellyfin:latest
+
+  - name: Emby
+    image: emby/embyserver:latest
+
+  # --- Download clients ---
+
+  - name: qBittorrent
+    image: ghcr.io/hotio/qbittorrent:latest
+
+  - name: SABnzbd
+    image: ghcr.io/hotio/sabnzbd:latest
+
+  - name: NZBGet
+    image: ghcr.io/nzbgetcom/nzbget:latest
+
+  - name: Deluge
+    image: ghcr.io/hotio/deluge:latest
+
+  - name: Transmission
+    image: lscr.io/linuxserver/transmission:latest
+
+  # --- VPN / Networking ---
+
+  - name: Gluetun
+    image: qmcgaw/gluetun:latest
+
+  - name: WireGuard Easy
+    image: ghcr.io/wg-easy/wg-easy:latest
+
+  - name: Tailscale
+    image: tailscale/tailscale:latest
+
+  # --- Reverse proxies ---
+
+  - name: Traefik
+    image: traefik:latest
+
+  - name: Nginx Proxy Manager
+    image: jc21/nginx-proxy-manager:latest
+
+  - name: Caddy
+    image: caddy:latest
+
+  # --- Dashboards & management ---
+
+  - name: Portainer
+    image: portainer/portainer-ce:latest
+
+  - name: Homepage
+    image: ghcr.io/gethomepage/homepage:latest
+
+  - name: Dashy
+    image: lissy93/dashy:latest
+
+  - name: Organizr
+    image: organizr/organizr:latest
+
+  # --- Monitoring ---
+
+  - name: Uptime Kuma
+    image: louislam/uptime-kuma:latest
+
+  - name: Grafana
+    image: grafana/grafana:latest
+
+  - name: Prometheus
+    image: prom/prometheus:latest
+
+  # --- DNS / Ad blocking ---
+
+  - name: Pi-hole
+    image: pihole/pihole:latest
+
+  - name: AdGuard Home
+    image: adguard/adguardhome:latest
+
+  # --- Auth ---
+
+  - name: Authelia
+    image: authelia/authelia:latest
+
+  - name: Authentik
+    image: ghcr.io/goauthentik/server:latest
+
+  # --- Media tools ---
+
+  - name: Tautulli
+    image: ghcr.io/tautulli/tautulli:latest
+
+  - name: Audiobookshelf
+    image: ghcr.io/advplyr/audiobookshelf:latest
+
+  - name: Kavita
+    image: jvmilazz0/kavita:latest
+
+  - name: Komga
+    image: gotson/komga:latest
+
+  # --- Photos & documents ---
+
+  - name: Immich
+    image: ghcr.io/immich-app/immich-server:latest
+
+  - name: Paperless-ngx
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+
+  # --- Self-hosted utilities ---
+
+  - name: Vaultwarden
+    image: vaultwarden/server:latest
+
+  - name: Mealie
+    image: ghcr.io/mealie-recipes/mealie:latest
+
+  - name: Home Assistant
+    image: ghcr.io/home-assistant/home-assistant:latest
+
+  - name: Nextcloud
+    image: nextcloud:latest
+
+  - name: Gitea
+    image: gitea/gitea:latest
+
+  - name: Actual Budget
+    image: actualbudget/actual-server:latest
+
+  - name: Syncthing
+    image: syncthing/syncthing:latest
+
+  - name: Watchtower
+    image: containrrr/watchtower:latest
