@@ -206,7 +206,7 @@ images:
   # --- Photos & documents ---
 
   - name: Immich
-    image: ghcr.io/immich-app/immich-server:latest
+    image: ghcr.io/immich-app/immich-server:v2
 
   - name: Paperless-ngx
     image: ghcr.io/paperless-ngx/paperless-ngx:latest

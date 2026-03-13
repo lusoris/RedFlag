@@ -80,7 +80,7 @@ Automated [Trivy](https://github.com/aquasecurity/trivy) vulnerability scanner f
 | Audiobookshelf | `ghcr.io/advplyr/audiobookshelf:latest` |
 | Kavita | `jvmilazz0/kavita:latest` |
 | Komga | `gotson/komga:latest` |
-| Immich | `ghcr.io/immich-app/immich-server:latest` |
+| Immich | `ghcr.io/immich-app/immich-server:v2` |
 | Paperless-ngx | `ghcr.io/paperless-ngx/paperless-ngx:latest` |
 | Vaultwarden | `vaultwarden/server:latest` |
 | Mealie | `ghcr.io/mealie-recipes/mealie:latest` |
