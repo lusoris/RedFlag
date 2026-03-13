@@ -1,6 +1,12 @@
 name: Trivy CVE Scan
 
 on:
+  push:
+    branches: [main]
+    paths: [images.yaml]
+  pull_request:
+    branches: [main]
+    paths: [images.yaml]
   schedule:
     # Daily at 06:00 UTC
     - cron: "0 6 * * *"
@@ -38,9 +44,15 @@ jobs:
       - name: Run scan
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./redflag --config images.yaml --state state.json
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            ./redflag --config images.yaml --state state.json --dry-run
+          else
+            ./redflag --config images.yaml --state state.json
+          fi
 
       - name: Commit updated state
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
