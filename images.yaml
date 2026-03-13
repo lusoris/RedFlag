@@ -7,3 +7,73 @@ images:
 
   - name: Cleanuparr
     image: ghcr.io/cleanuparr/cleanuparr:latest
+
+  # --- Newer *arr ecosystem projects ---
+
+  - name: Decluttarr
+    image: ghcr.io/manimatter/decluttarr:latest
+
+  - name: Swaparr
+    image: ghcr.io/thijmengthn/swaparr:latest
+
+  - name: Pulsarr
+    image: lakker/pulsarr:latest
+
+  - name: Posterizarr
+    image: ghcr.io/fscorrupt/posterizarr:latest
+
+  - name: Byparr
+    image: ghcr.io/thephaseless/byparr:latest
+
+  - name: Calendarr
+    image: ghcr.io/jordanlambrecht/calendarr:latest
+
+  - name: Trailarr
+    image: nandyalu/trailarr:latest
+
+  - name: Lingarr
+    image: ghcr.io/lingarr-translate/lingarr:latest
+
+  - name: Configarr
+    image: ghcr.io/raydak-labs/configarr:latest
+
+  - name: Soularr
+    image: ghcr.io/mrusse/soularr:latest
+
+  - name: iPlayarr
+    image: nikorag/iplayarr:latest
+
+  - name: SuggestArr
+    image: ciuse99/suggestarr:latest
+
+  - name: Managarr
+    image: darkalex17/managarr:latest
+
+  # --- Established / widely used ---
+
+  - name: Seerr
+    image: seerr/seerr:latest
+
+  - name: Homarr
+    image: ghcr.io/homarr-labs/homarr:latest
+
+  - name: Maintainerr
+    image: ghcr.io/maintainerr/maintainerr:latest
+
+  - name: Recyclarr
+    image: ghcr.io/recyclarr/recyclarr:8
+
+  - name: Autobrr
+    image: ghcr.io/autobrr/autobrr:latest
+
+  - name: Wizarr
+    image: ghcr.io/wizarrrr/wizarr:latest
+
+  - name: Autopulse
+    image: ghcr.io/dan-online/autopulse:latest
+
+  - name: Unpackerr
+    image: ghcr.io/unpackerr/unpackerr:latest
+
+  - name: StashApp
+    image: stashapp/stash:latest
