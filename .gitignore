@@ -1,0 +1,16 @@
+# Binaries
+redflag
+redflag.exe
+*.exe
+
+# Go
+vendor/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
